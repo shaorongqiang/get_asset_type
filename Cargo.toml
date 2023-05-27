@@ -1,0 +1,25 @@
+[package]
+name = "get_asset_type"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.0.26", features = ["derive"] }
+anyhow = "1.0.66"
+web3 = "0.18.0"
+serde = { version = "1.0.124", features = ["derive"] }
+serde_json = "1.0.40"
+base64 = "0.13"
+hex = "0.4.2" 
+attohttpc = { version = "0.23", default-features = false, features = ["compress", "json", "tls-rustls"] }
+tokio = { version = "1.10.1", features = ["full"] }
+
+
+[profile.release]
+opt-level = 'z'     # Optimize for size.
+lto = true          # Enable Link Time Optimization
+codegen-units = 1   # Reduce number of codegen units to increase optimizations.
+panic = 'abort'     # Abort on panic
+strip = true        # Strip symbols from binary
